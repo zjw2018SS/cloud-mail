@@ -7,9 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_PAT }}
+          fetch-depth: 0
       - name: Sync from maillab/cloud-mail
         run: |
           git remote add upstream https://github.com/maillab/cloud-mail.git
           git fetch upstream main
-          git merge upstream/main --no-edit --allow-unrelated-histories || { echo "NO_UPSTREAM_CHANGES"; exit 0; }
+          git merge upstream/main --no-edit || { echo "NO_UPSTREAM_CHANGES"; exit 0; }
           git push origin main
