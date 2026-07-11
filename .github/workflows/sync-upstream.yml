@@ -1,0 +1,14 @@
+name: Sync upstream
+on:
+  schedule: [{cron: '37 4 * * *'}]  # UTC 4:37 daily
+  workflow_dispatch: {}
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {token: ${{ secrets.GITHUB_TOKEN }}}
+      - name: Sync from maillab/cloud-mail
+        run: gh repo sync ${{ github.repository }} --source maillab/cloud-mail --force
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
