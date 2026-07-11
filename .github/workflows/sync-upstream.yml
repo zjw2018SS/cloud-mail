@@ -12,7 +12,9 @@ jobs:
           fetch-depth: 0
       - name: Sync from maillab/cloud-mail
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/maillab/cloud-mail.git
           git fetch upstream main
-          git merge upstream/main --no-edit || { echo "NO_UPSTREAM_CHANGES"; exit 0; }
+          git merge upstream/main --no-edit || { echo "MERGE_CONFLICT_SKIPPED"; exit 0; }
           git push origin main
