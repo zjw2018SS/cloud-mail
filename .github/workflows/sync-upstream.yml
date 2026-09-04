@@ -30,6 +30,7 @@ jobs:
           git worktree add --detach "$upstream_dir" upstream/main
           rsync -a --delete \
             --exclude='.git' \
+            --exclude='.github/workflows/deploy-cloudflare.yml' \
             --exclude='.github/workflows/sync-upstream.yml' \
             "$upstream_dir/" ./
           git worktree remove "$upstream_dir"
