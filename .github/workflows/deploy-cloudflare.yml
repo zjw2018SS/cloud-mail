@@ -103,8 +103,11 @@ jobs:
             sed -i '/^project_link = /d' "$CONFIG_FILE"
           fi
           
-          if [ -z "$CUSTOM_DOMAIN" ]; then
-            sed -i '/\[\[routes\]\]/,/^$/d' "$CONFIG_FILE"
+          # The existing custom domain is managed in the Cloudflare dashboard.
+          # This deployment token intentionally has no zone-route permission.
+          sed -i '/\[\[routes\]\]/,/^$/d' "$CONFIG_FILE"
+          if ! grep -qxF 'workers_dev = false' "$CONFIG_FILE"; then
+            sed -i '/^compatibility_date = /a workers_dev = false' "$CONFIG_FILE"
           fi
           
           if [ "$(printf '%s' "$CLOUDFLARE_EMAIL" | tr '[:upper:]' '[:lower:]')" = "true" ]; then
