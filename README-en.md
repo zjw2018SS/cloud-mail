@@ -1,3 +1,5 @@
+> **Manual upstream updates for this fork.** Synchronize upstream locally; Actions require manual dispatch. Existing CF Git builds are allowed; check deployment impact before pushing. See the [manual update guide](MANUAL-UPDATES.md).
+
 <p align="center">
     <img src="doc/demo/logo.png" width="80px" />
     <h1 align="center">Cloud Mail</h1>
