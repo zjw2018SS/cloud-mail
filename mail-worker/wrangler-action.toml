@@ -1,7 +1,6 @@
 name = "${NAME}"
 main = "src/index.js"
 compatibility_date = "2025-06-04"
-keep_vars = true
 
 [observability]
 enabled = true
